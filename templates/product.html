@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🛍️ Product Management</h1>
+
+        <!-- Go to Home Button -->
+        <a href="{{ url_for('homepage') }}">
+            <button style="margin-bottom: 15px; padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 6px; cursor: pointer;">
+                🏠 Go to Home Page
+            </button>
+        </a>
+
+        <form action="/add_product" method="POST" class="form-inline">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="text" name="description" placeholder="Description" required>
+            <input type="number" name="price" step="0.01" placeholder="Price" required>
+            <input type="number" name="quantity" placeholder="Quantity" required>
+            <button type="submit">Add Product</button>
+        </form>
+
+        <h2>📦 Product List</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Actions</th>
+            </tr>
+            {% for product in products %}
+            <tr>
+                <form action="/edit_product/{{ product.id }}" method="POST">
+                    <td><input type="text" name="name" value="{{ product.name }}"></td>
+                    <td><input type="text" name="description" value="{{ product.description }}"></td>
+                    <td><input type="number" name="price" value="{{ product.price }}"></td>
+                    <td><input type="number" name="quantity" value="{{ product.quantity }}"></td>
+                    <td>
+                        <button type="submit">Update</button>
+                        <a href="/delete_product/{{ product.id }}" class="danger">Delete</a>
+                    </td>
+                </form>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

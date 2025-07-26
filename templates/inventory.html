@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>📦 Inventory Management</h1>
+
+        <!-- Go to Home Button -->
+        <a href="{{ url_for('homepage') }}">
+            <button style="margin-bottom: 15px; padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 6px; cursor: pointer;">
+                🏠 Go to Home Page
+            </button>
+        </a>
+
+        <!-- Inventory Update Form -->
+        <form action="/update_inventory" method="POST" class="form-inline">
+            <label for="product_id">Product ID:</label>
+            <input type="number" name="product_id" placeholder="Enter product ID" required>
+
+            <label for="batch">Batch:</label>
+            <input type="text" name="batch" placeholder="e.g. BATCH001" required>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" name="quantity" placeholder="Enter quantity" required>
+
+            <button type="submit" class="btn">➕ Update Inventory</button>
+        </form>
+
+        <br><hr><br>
+
+        <!-- Inventory Table -->
+        <h2>📋 Current Inventory</h2>
+        {% if inventory %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Product ID</th>
+                    <th>Batch</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in inventory %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.product_id }}</td>
+                    <td>{{ item.batch }}</td>
+                    <td>{{ item.quantity }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No inventory records found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Billing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .product-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .product-row label {
+            flex: 1;
+        }
+
+        .product-row input[type="number"] {
+            width: 80px;
+            margin-left: 10px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input[type="number"], input[type="text"] {
+            padding: 5px;
+            margin: 5px 0;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: black;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .home-button {
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .home-button button {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .home-button button:hover {
+            background-color: #1e7e34;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🧾 Billing</h1>
+
+    <!-- Go to Home Button -->
+    <div class="home-button">
+        <a href="{{ url_for('homepage') }}">
+            <button>🏠 Go to Home Page</button>
+        </a>
+    </div>
+
+    <form action="/generate_bill" method="POST">
+        {% for product in products %}
+        <div class="product-row">
+            <label>
+                <input type="checkbox" name="product_ids" value="{{ product.id }}">
+                {{ product.name }} - ₹{{ product.price }}
+            </label>
+            <input type="number" name="quantities" min="1" placeholder="Qty">
+        </div>
+        {% endfor %}
+
+        <label>Discount (%)</label><br>
+        <input type="number" name="discount" value="0" min="0" max="100"><br>
+
+        <label>Tax (%)</label><br>
+        <input type="number" name="tax" value="0" min="0" max="100"><br>
+
+        <button type="submit">🧮 Generate Bill</button>
+    </form>
+</div>
+</body>
+</html>

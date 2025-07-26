@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ML Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            background: url("{{ url_for('static', filename='images/bg-image.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .home-button {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .home-button a button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .home-button a button:hover {
+            background-color: #1e7e34;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .card h2 {
+            font-size: 20px;
+            color: #444;
+        }
+
+        .card:nth-child(1) {
+            background: linear-gradient(to bottom right, #ffe29f, #ffa99f);
+        }
+
+        .card:nth-child(2) {
+            background: linear-gradient(to bottom right, #a1c4fd, #c2e9fb);
+        }
+
+        .card:nth-child(3) {
+            background: linear-gradient(to bottom right, #fbc2eb, #a6c1ee);
+        }
+
+        .card:nth-child(4) {
+            background: linear-gradient(to bottom right, #fddb92, #d1fdff);
+        }
+
+        .card:nth-child(5) {
+            background: linear-gradient(to bottom right, #84fab0, #8fd3f4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 ML Dashboard</h1>
+
+        <div class="home-button">
+            <a href="{{ url_for('homepage') }}">
+                <button>🏠 Go to Home Page</button>
+            </a>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>📈 Demand Forecasting</h2>
+            </div>
+            <div class="card">
+                <h2>🛍️ Product Recommendation</h2>
+            </div>
+            <div class="card">
+                <h2>⚠️ Anomaly Detection</h2>
+            </div>
+            <div class="card">
+                <h2>💰 Price Optimization</h2>
+            </div>
+            <div class="card">
+                <h2>📦 Inventory Optimization</h2>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

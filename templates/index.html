@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product, Inventory & Billing</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Product, Inventory & Billing<br>Management System</h1>
+        <div class="buttons">
+         <a href="{{ url_for('product') }}" class="btn">Manage Products</a>
+         <a href="{{ url_for('inventory') }}" class="btn">Inventory</a>
+         <a href="{{ url_for('billing') }}" class="btn">Billing</a>
+         <a href="{{ url_for('ml_dashboard') }}" class="btn">ML Dashboard</a>
+    </div>
+    </div>
+</body>
+</html>
